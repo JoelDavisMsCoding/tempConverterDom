@@ -1,10 +1,12 @@
 //Getting Text from a input box
-let tempUnit = document.querySelector("option");
-console.log(tempUnit);
+let tempUnit = document.querySelector("select");
+let removeDefault = document.getElementById("default");
+console.log(removeDefault);
+console.log(tempUnit.value);
 let temperature = document.getElementById("temperature");
 console.log(temperature.value);
 let convertButton = document.getElementById("convert");
-let refreshButton = document.getElementById("refresh");
+let clearButton = document.getElementById("clear");
 let tempUnitChosen = "";
 let tempChosen = "";
 function celsiusToKelvin(temperature)
@@ -47,8 +49,7 @@ function farenheitToKelvin(temperature)
 }
 
 tempUnit.addEventListener("click", () =>
-{
-    
+{   
     tempUnitChosen = tempUnit.value;
 })
 temperature.addEventListener("input", () =>
@@ -65,7 +66,8 @@ convertButton.addEventListener("click", () => {
     if (tempUnitChosen == "farenheitToCelsius"){let convertedTemp = farenheitToCelsius(tempChosen); confirm(`Temperature Conversion: ${convertedTemp}°`);}
     if (tempUnitChosen == "farenheitToKelvin"){let convertedTemp = farenheitToKelvin(tempChosen); confirm(`Temperature Conversion: ${convertedTemp}°`);}
 })
-refreshButton.addEventListener("click", () => {
-    tempUnit.placeholder = "";
+clearButton.addEventListener("click", () => {
+    tempUnit.value = "Select Temp Unit";
     temperature.value = "";
+    //document.getElementById("tempUnitOptions").value = "";
 })

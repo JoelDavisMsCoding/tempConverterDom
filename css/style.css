@@ -1,13 +1,22 @@
 body
 {
+    background-image: linear-gradient(to right, hwb(0 0% 0%), #07b5ff);
+    /*
     background: url("./backgroungPic.png")50%;
     position: relative;
     background-repeat: no-repeat;
     background-size: contain;
     background-attachment: fixed;
-    z-index: 1;
+    z-index: 1; */
 }
-.container1 {margin-top: 10%;}
+.snowFall h1
+{
+    color: #ffffff;
+    z-index: 1; /* set higher z-index value */
+    position: relative; /* position must be set for z-index to work */
+}
+
+.container1{margin-top: 10%}
 .row {place-content: center; text-align-last: center;}
-.ct1Col1 {padding: 20px; background-color: gray;}
+.ct1Col1 {padding: 20px; background-color: gray; border: solid;}
 h5 {text-align-last: center; padding-top: 5%; color:aliceblue ;}
