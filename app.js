@@ -11,7 +11,7 @@ let tempUnitChosen = "";
 let tempChosen = "";
 function celsiusToKelvin(temperature)
 {
-    let convertedTemp = temperature + 273.15;
+    let convertedTemp = parseFloat(temperature) + 273.15;
     let result= Math.round(convertedTemp * 100) / 100;
     return result;
 }
