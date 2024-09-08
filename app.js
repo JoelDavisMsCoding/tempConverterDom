@@ -8,8 +8,8 @@ console.log(temperature.value);
 let convertButton = document.getElementById("convert");
 let clearButton = document.getElementById("clear");
 let tempUnitChosen = "";
-let tempChosen = "";
-function celsiusToKelvin(temperature)
+let tempInput = "";
+function celsiusToKelvin(temperature) //Convert functions for later when the user selects which temp unit they want to convert to and from.
 {
     let convertedTemp = parseFloat(temperature) + 273.15;
     let result= Math.round(convertedTemp * 100) / 100;
@@ -44,30 +44,32 @@ function farenheitToKelvin(temperature)
     let convertedTemp = (temperature - 32) * 5/9 + 273.15;
     let result= Math.round(convertedTemp * 100) / 100;
     return result;
-    //return temperature + 459.67 * 5/9;
-    //return temperature + 459.67 / 1.;
 }
 
-tempUnit.addEventListener("click", () =>
+tempUnit.addEventListener("click", () => //event listener to pick the temp unit they want to convert once they choose and click the button
 {   
     tempUnitChosen = tempUnit.value;
 })
-temperature.addEventListener("input", () =>
+temperature.addEventListener("input", () => //collects the character and keeps adding on while entering text
 {
-    tempChosen = temperature.value;
+    tempInput = temperature.value;
+    if (isNaN(temperature.value) && temperature.value != ".") //Input validation that restricts the user from putting in any character other than a number
+    {
+        temperature.value = temperature.value.slice(0, -1);
+    }
+    else {tempInput = temperature.value;}
 })
 convertButton.addEventListener("click", () => {
     tempUnitChosen = tempUnit.value;
-    tempChosen = temperature.value;
-    if (tempUnitChosen == "kelvinToCelsius"){let convertedTemp = kelvinToCelsius(tempChosen); confirm(`Temperature Conversion: ${convertedTemp}°`);}
-    if (tempUnitChosen == "kelvinToFarenheit"){let convertedTemp = kelvinToFarenheit(tempChosen); confirm(`Temperature Conversion: ${convertedTemp}°`);}
-    if (tempUnitChosen == "celsiusToFarenheit"){let convertedTemp = celsiusToFarenheit(tempChosen); confirm(`Temperature Conversion: ${convertedTemp}°`);}
-    if (tempUnitChosen == "celsiusToKelvin"){let convertedTemp = celsiusToKelvin(tempChosen); confirm(`Temperature Conversion: ${convertedTemp}°`);}
-    if (tempUnitChosen == "farenheitToCelsius"){let convertedTemp = farenheitToCelsius(tempChosen); confirm(`Temperature Conversion: ${convertedTemp}°`);}
-    if (tempUnitChosen == "farenheitToKelvin"){let convertedTemp = farenheitToKelvin(tempChosen); confirm(`Temperature Conversion: ${convertedTemp}°`);}
+    tempInput = temperature.value;
+    if (tempUnitChosen == "kelvinToCelsius"){let convertedTemp = kelvinToCelsius(tempInput); confirm(`Temperature Conversion: ${convertedTemp}°`);}
+    if (tempUnitChosen == "kelvinToFarenheit"){let convertedTemp = kelvinToFarenheit(tempInput); confirm(`Temperature Conversion: ${convertedTemp}°`);}
+    if (tempUnitChosen == "celsiusToFarenheit"){let convertedTemp = celsiusToFarenheit(tempInput); confirm(`Temperature Conversion: ${convertedTemp}°`);}
+    if (tempUnitChosen == "celsiusToKelvin"){let convertedTemp = celsiusToKelvin(tempInput); confirm(`Temperature Conversion: ${convertedTemp}°`);}
+    if (tempUnitChosen == "farenheitToCelsius"){let convertedTemp = farenheitToCelsius(tempInput); confirm(`Temperature Conversion: ${convertedTemp}°`);}
+    if (tempUnitChosen == "farenheitToKelvin"){let convertedTemp = farenheitToKelvin(tempInput); confirm(`Temperature Conversion: ${convertedTemp}°`);}
 })
 clearButton.addEventListener("click", () => {
     tempUnit.value = "Select Temp Unit";
     temperature.value = "";
-    //document.getElementById("tempUnitOptions").value = "";
 })
